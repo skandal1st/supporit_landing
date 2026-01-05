@@ -1,5 +1,4 @@
 import {
-  TrendingUp,
   DollarSign,
   Clock,
   Shield,
