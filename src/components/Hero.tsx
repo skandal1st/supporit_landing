@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import { ArrowRight, TrendingUp, Shield, Zap } from 'lucide-react'
+import ConsultationForm from './ConsultationForm'
 
 export default function Hero() {
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false)
   return (
     <section className="relative pt-24 pb-20 md:pt-32 md:pb-32 overflow-hidden bg-gradient-to-br from-primary-50 via-white to-primary-50">
       {/* Background decoration */}
@@ -34,13 +37,13 @@ export default function Hero() {
             Все в одном месте, с доступом 24/7 и автоматическими уведомлениями.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <a
-              href="mailto:info@supporit.ru?subject=Запрос на консультацию"
+            <button
+              onClick={() => setIsConsultationOpen(true)}
               className="px-8 py-4 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 text-lg"
             >
               Получить консультацию
               <ArrowRight size={20} />
-            </a>
+            </button>
             <a
               href="#problems"
               className="px-8 py-4 bg-white text-primary-600 rounded-lg font-semibold hover:bg-gray-50 transition-all border-2 border-primary-600 shadow-lg hover:shadow-xl text-lg"
@@ -107,6 +110,11 @@ export default function Hero() {
           animation-delay: 4s;
         }
       `}</style>
+
+      <ConsultationForm
+        isOpen={isConsultationOpen}
+        onClose={() => setIsConsultationOpen(false)}
+      />
     </section>
   )
 }

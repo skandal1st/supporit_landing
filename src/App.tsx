@@ -10,6 +10,7 @@ import TechStack from './components/TechStack'
 import FAQ from './components/FAQ'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
+import CookieConsent from './components/CookieConsent'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -157,6 +158,7 @@ function App() {
       </main>
 
       <Footer />
+      <CookieConsent />
     </div>
   )
 }

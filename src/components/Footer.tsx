@@ -1,6 +1,11 @@
+import { useState } from 'react'
 import { Mail, Code } from 'lucide-react'
+import ConsultationForm from './ConsultationForm'
+import DemoForm from './DemoForm'
 
 export default function Footer() {
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false)
+  const [isDemoOpen, setIsDemoOpen] = useState(false)
   return (
     <footer className="bg-gray-900 text-gray-300 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -82,13 +87,19 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-            <div className="mt-4">
-              <a
-                href="mailto:info@supporit.ru?subject=Запрос на демо-версию"
-                className="inline-block px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-500 transition-colors text-sm font-semibold"
+            <div className="mt-4 flex gap-2">
+              <button
+                onClick={() => setIsDemoOpen(true)}
+                className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-500 transition-colors text-sm font-semibold"
               >
                 Получить демо
-              </a>
+              </button>
+              <button
+                onClick={() => setIsConsultationOpen(true)}
+                className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm font-semibold"
+              >
+                Консультация
+              </button>
             </div>
           </div>
         </div>
@@ -100,6 +111,15 @@ export default function Footer() {
           </p>
         </div>
       </div>
+
+      <ConsultationForm
+        isOpen={isConsultationOpen}
+        onClose={() => setIsConsultationOpen(false)}
+      />
+      <DemoForm
+        isOpen={isDemoOpen}
+        onClose={() => setIsDemoOpen(false)}
+      />
     </footer>
   )
 }

@@ -1,6 +1,11 @@
+import { useState } from 'react'
 import { ArrowRight, Mail, Calendar, CheckCircle2 } from 'lucide-react'
+import ConsultationForm from './ConsultationForm'
+import DemoForm from './DemoForm'
 
 export default function CTA() {
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false)
+  const [isDemoOpen, setIsDemoOpen] = useState(false)
   return (
     <section className="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
       {/* Background decoration */}
@@ -49,21 +54,21 @@ export default function CTA() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="mailto:info@supporit.ru?subject=Запрос на демонстрацию системы"
+            <button
+              onClick={() => setIsDemoOpen(true)}
               className="px-8 py-4 bg-white text-primary-600 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
             >
               <Mail size={22} />
               Заказать демонстрацию
-            </a>
-            <a
-              href="mailto:info@supporit.ru?subject=Запрос на консультацию"
+            </button>
+            <button
+              onClick={() => setIsConsultationOpen(true)}
               className="px-8 py-4 bg-primary-500 text-white rounded-lg font-bold text-lg hover:bg-primary-400 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl border-2 border-white/30 flex items-center justify-center gap-2"
             >
               <Calendar size={22} />
               Записаться на консультацию
               <ArrowRight size={22} />
-            </a>
+            </button>
           </div>
         </div>
 
@@ -79,6 +84,15 @@ export default function CTA() {
           </a>
         </div>
       </div>
+
+      <ConsultationForm
+        isOpen={isConsultationOpen}
+        onClose={() => setIsConsultationOpen(false)}
+      />
+      <DemoForm
+        isOpen={isDemoOpen}
+        onClose={() => setIsDemoOpen(false)}
+      />
     </section>
   )
 }
